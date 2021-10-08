@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const port = 5000
+
+const config = require('./config/key');
+
 const { User } = require("./models/User");
 
 // application/x-www-form-urlencoded 데이터를 분석해서 가져올 수 있게 해줌
@@ -9,7 +12,7 @@ app.use(express.urlencoded({exteded: true}));
 app.use(express.json());
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://parkseyun:yun3214@boilerplate.qnrlv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' // 몽고db에서 데이터베이스만든거 주소 갖고와서 안에 비밀번호만 넣음
+mongoose.connect(config.mongoURI
 ).then(() => console.log('MongoDB Connected...')) // 연결 잘 됐는지 확인 
  .catch(err => console.log(err)) // 에러 날때 확인할려고 
 
